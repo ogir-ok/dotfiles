@@ -72,6 +72,8 @@ let g:pymode_lint_checkers = ['pep8', 'pylint']
 let g:pymode_lint_ignore = "E501,W"
 let g:pymode_lint_select = "E501,W0011,W430"
 let g:pymode_rope_goto_definition_bind = '<C-space>'
+let g:pymode_virtualenv = 1
+let g:pymode_virtualenv_path = "~/virtualenvs/accellion/"
 
 "MiniBufferExploer
 let g:miniBufExplMapWindowNavVim = 1
