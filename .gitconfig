@@ -1,9 +1,11 @@
 [user]
-	email = 275924@gmail.com
 	name = Ihor Harahatyi
+	email = ihor.harahatyi@accellion.com
+
 [alias]
+    b = branch
     # View abbreviated SHA, description, and history graph of the latest 20 commit
-    l = "!git --no-pager log -n 42 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    l = "!git --no-pager log -n 32 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     # View the current working tree status using the short format
     s = status -s
     # Show the diff between the latest commit and the current state
@@ -37,9 +39,6 @@
     out = log @{u}..
     backup = !file=../`git describe`.tar && echo \"Creating `readlink -f $file`\" && tar cf $file .
 
-[apply]
-    # Detect whitespace errors when applying a patch
-    whitespace = fix
 
 [core]
     # Use custom `.gitignore` and `.gitattributes`
@@ -50,7 +49,6 @@
     # [default] trailing-space: looks for spaces at the end of a line
     # [default] space-before-tab: looks for spaces before tabs at the beginning of
     # a line
-    whitespace = space-before-tab,indent-with-non-tab,trailing-space
     
     # 
     autocrlf = input
@@ -94,3 +92,10 @@
 
 [push]
 	default = upstream
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

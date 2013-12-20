@@ -1,4 +1,3 @@
-set nocompatible
 autocmd BufWritePost .vimrc source $MYVIMRC
 
 filetype off
@@ -66,9 +65,9 @@ let g:pymode_options = 1
 let g:pymode_motion = 1
 let g:pymode_folding = 0
 let g:pymode_virtualenv = 1
-let g:pymode_lint_on_fly = 0
+let g:pymode_lint_on_fly = 1
 let g:pymode_lint_message = 1
-let g:pymode_lint_checkers = ['pep8', 'pylint']
+let g:pymode_lint_checkers = ['pep8']
 let g:pymode_lint_ignore = "E501,W"
 let g:pymode_lint_select = "E501,W0011,W430"
 let g:pymode_rope_goto_definition_bind = '<C-space>'
@@ -81,7 +80,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 let g:miniBufExplAutoStart = 1
-
+let g:miniBufExplBuffersNeeded = 0
 
 
 
@@ -250,4 +249,3 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
-
