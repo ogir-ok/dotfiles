@@ -11,7 +11,7 @@ set fileencodings=utf8,cp1251
 set termencoding=utf-8
 set t_Co=256
 colorscheme wombat256 
-set guifont=DejaVu\ Sans\ Mono\ 11
+set guifont=DejaVu\ Sans\ Mono:h11
 set laststatus=2
 
 "gui like console
@@ -49,6 +49,8 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
 "NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '.git', '.idea']
+let NERDTreeChDirMode=2
+let NERDTreeShowBookmarks=1
 
 
 "clang auto completion problem
@@ -60,6 +62,7 @@ let g:clang_user_options='|| exit 0'
 
 "Python-Mode
 let g:pymode = 1
+let g:pymode_rope = 0 "Slows down Jedi from YouCompleteMe
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options = 1
 let g:pymode_motion = 1
@@ -70,9 +73,9 @@ let g:pymode_lint_message = 1
 let g:pymode_lint_checkers = ['pep8']
 let g:pymode_lint_ignore = "E501,W"
 let g:pymode_lint_select = "E501,W0011,W430"
-let g:pymode_rope_goto_definition_bind = '<C-space>'
 let g:pymode_virtualenv = 1
 let g:pymode_virtualenv_path = "~/virtualenvs/accellion/"
+
 
 "MiniBufferExploer
 let g:miniBufExplMapWindowNavVim = 1
@@ -82,6 +85,11 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplAutoStart = 1
 let g:miniBufExplBuffersNeeded = 0
 
+
+"YouCompleteMe
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_filepath_completion_use_working_dir = 1
 
 
 
@@ -115,6 +123,8 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'gotcha/vimpdb'
 Bundle 'amiorin/vim-project'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
 
 
 
