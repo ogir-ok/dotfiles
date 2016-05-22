@@ -1,0 +1,25 @@
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 166
+
+!xterm
+XTerm*utf8: 1
+
+!stjerm
+stjerm.autohide: false
+
+stjerm.border: thin
+stjerm.scrollbar: right
+
+stjerm.width: 1800
+stjerm.height: 800
+
+stjerm.key: grave
+stjerm.mod: control
+
+stjerm.font: 15
+
