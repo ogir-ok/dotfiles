@@ -65,6 +65,9 @@ RPROMPT=$'%{\e[1;34m%}%T%{\e[0m%}' # right prompt with time
 
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
+alias pcker='packer --noconfirm --noedit'
+alias redwm='cd ~/dwm; updpkgsums; makepkg -efi --noconfirm; killall dwm'
+alias dockerclean='docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes --dry-run'
 
 setopt CORRECT_ALL
 setopt autocd
@@ -76,4 +79,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export WORKON_HOME=~/pyvenv/
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2  
+source /bin/virtualenvwrapper.sh
 

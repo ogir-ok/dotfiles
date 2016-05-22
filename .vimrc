@@ -1,17 +1,98 @@
-autocmd BufWritePost .vimrc source $MYVIMRC
-
 filetype off
-filetype plugin on
+
+
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+
+"Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'klen/python-mode'
+Plugin 'majutsushi/tagbar'
+Plugin 'gregsexton/MatchTag'
+Plugin 'kien/ctrlp.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'gotcha/vimpdb'
+Plugin 'amiorin/vim-project'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jmcantrell/vim-virtualenv'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'albfan/nerdtree-git-plugin'
+
+Plugin 'git://github.com/pangloss/vim-javascript.git'
+Plugin 'git://github.com/itspriddle/vim-jquery.git'
+
+Plugin 'git://github.com/leshill/vim-json.git'
+
+Plugin 'lervag/vimtex'
+Plugin 'isRuslan/vim-es6'
+
+"Plugin 'vim-scripts/project.tar.gz'
+
+call vundle#end()
+filetype plugin indent on
+
 set nobackup
 set noswapfile
 set encoding=utf-8
 set fileencodings=utf8,cp1251
 
+set hlsearch
+
+"windows ctrl+c/v/x
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
+" CTRL-X and SHIFT-Del are Cut
+vnoremap <C-X> "+x
+vnoremap <S-Del> "+x
+
+" CTRL-C and CTRL-Insert are Copy
+vnoremap <C-C> "+y
+vnoremap <C-Insert> "+y
+
+" CTRL-V and SHIFT-Insert are Paste
+map <C-V> "+gP
+map <S-Insert> "+gP
+
+cmap <C-V> <C-R>+
+cmap <S-Insert> <C-R>+
+
+" Pasting blockwise and linewise selections is not possible in Insert and
+" Visual mode without the +virtualedit feature.  They are pasted as if they
+" were characterwise instead.
+" Uses the paste.vim autoload script.
+
+exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+imap <S-Insert> <C-V>
+vmap <S-Insert> <C-V>
+
+" Use CTRL-Q to do what CTRL-V used to do
+noremap <C-Q> <C-V>
+
+"CTRL-Z for undo
+noremap <C-Z> u 
+vnoremap <C-Z> u 
+
+
 "view
 set termencoding=utf-8
 set t_Co=256
 colorscheme wombat256 
-set guifont=DejaVu\ Sans\ Mono:h11
+set guifont=Dejavu\ Sans\ Mono\ 13
 set laststatus=2
 
 "gui like console
@@ -33,6 +114,15 @@ set smarttab
 set expandtab 
 set softtabstop=4 
 
+"special tabs html/js
+"autocmd FileType html :setlocal sw=2 ts=2 sts=2
+"autocmd FileType javascript :setlocal sw=2 ts=2 sts=2
+
+autocmd FileType lua :setlocal sw=2 ts=2 sts=2
+autocmd FileType javascript :setlocal sw=2 ts=2 sts=2
+autocmd FileType js :setlocal sw=2 ts=2 sts=2
+autocmd FileType yaml :setlocal sw=2 ts=2 sts=2
+
 "for coding
 set autoindent
 syntax on
@@ -52,6 +142,11 @@ let NERDTreeIgnore = ['\.pyc$', '.git', '.idea']
 let NERDTreeChDirMode=2
 let NERDTreeShowBookmarks=1
 
+"MBE
+"switch buffers on crl+tab
+vnoremap <C-Tab> :MBEbn<CR>
+let g:miniBufExplCycleArround = 1
+
 
 "clang auto completion problem
 let g:clang_complete_auto = 1
@@ -67,14 +162,11 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_options = 1
 let g:pymode_motion = 1
 let g:pymode_folding = 0
-let g:pymode_virtualenv = 1
 let g:pymode_lint_on_fly = 1
 let g:pymode_lint_message = 1
 let g:pymode_lint_checkers = ['pep8']
-let g:pymode_lint_ignore = "E501,W"
-let g:pymode_lint_select = "E501,W0011,W430"
+let g:pymode_lint_ignore = "E501,E128,W"
 let g:pymode_virtualenv = 1
-let g:pymode_virtualenv_path = "~/virtualenvs/accellion/"
 
 
 "MiniBufferExploer
@@ -90,8 +182,13 @@ let g:miniBufExplBuffersNeeded = 0
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
-
+"CtrlP
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = ',o'
 
 "shortcuts
 abbrev W w
@@ -100,35 +197,22 @@ nmap ,m :Project<cr>
 
 nmap <space> :
 nmap <ctrl><tab> :tabnext<cr>
-nmap ,o :CtrlP<cr>  
-
-"Vundle
-set rtp+=~/.vim/bundle/vundle/
-
-call vundle#rc()
-
-filetype plugin indent on
-
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
-Bundle 'klen/python-mode'
-Bundle 'majutsushi/tagbar'
-Bundle 'gregsexton/MatchTag'
-Bundle 'kien/ctrlp.vim'
-Bundle 'itchyny/lightline.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mileszs/ack.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'gotcha/vimpdb'
-Bundle 'amiorin/vim-project'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
+"nmap ,o :CtrlP<CR>  
 
 
+"vimtex
+let g:vimtex_fold_enabled = 0
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:vimtex_build_dir = './build/'
+let g:vimtex_indent_enabled = 1
+let g:vimtex_latexmk_options = '-pdf -shell-escape -xelatex'
+let g:vimtex_quickfix_ignore_all_warnings = 1
+let g:vimtex_quickfix_mode = 2
+let g:vimtex_view_enabled = 1
+"let g:latex_view_general_viewer = 'foxireader'
 
-
+"syntastic
+let g:syntastic_javascript_checkers = ['eslint']
 
 "lightline config
 let g:lightline = {
