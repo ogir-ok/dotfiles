@@ -1,11 +1,11 @@
 [user]
 	name = Ihor Harahatyi
-	email = ihor.harahatyi@accellion.com
+	email = ihor.harahatyi@atomcream.com
 
 [alias]
     b = branch
     # View abbreviated SHA, description, and history graph of the latest 20 commit
-    l = "!git --no-pager log -n 32 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    l = "!git --no-pager log -n 12 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     # View the current working tree status using the short format
     s = status -s
     # Show the diff between the latest commit and the current state
@@ -42,8 +42,9 @@
 
 [core]
     # Use custom `.gitignore` and `.gitattributes`
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/ogir_ok/.gitignore_global
     attributesfile = ~/.gitattributes
+    edito = vim
     # Treat spaces before tabs, lines that are indented with 8 or more spaces, and
     # all kinds of trailing whitespace as an error.
     # [default] trailing-space: looks for spaces at the end of a line

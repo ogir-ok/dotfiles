@@ -63,7 +63,6 @@ PROMPT=$'%{\e[1;32m%}%n %{\e[1;34m%}%~ %#%{\e[0m%} ' # root dir #
 fi
 RPROMPT=$'%{\e[1;34m%}%T%{\e[0m%}' # right prompt with time
 
-alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias pcker='packer --noconfirm --noedit'
 alias redwm='cd ~/dwm; updpkgsums; makepkg -efi --noconfirm; killall dwm'
@@ -78,8 +77,7 @@ zstyle ':completion:*' menu select=long-list select=0
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export WORKON_HOME=~/pyvenv/
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2  
-source /bin/virtualenvwrapper.sh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export WORKON_HOME=~/workspace/pyvenv/
+source /usr/local/bin/virtualenvwrapper.sh
 
